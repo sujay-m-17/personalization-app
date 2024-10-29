@@ -1,0 +1,22 @@
+query RunInput($productTag: [String!]) {
+  cart{
+    lines{
+      id
+      merchandise{
+        __typename
+        ... on ProductVariant{
+          product{
+            id
+            hasAnyTag (tags: $productTag)
+          }
+        }
+      }
+      quantity
+    }
+  }
+  discountNode {
+    metafield(namespace: "quantity-discounter", key: "quantity-discount") {
+      value
+    }
+  }
+}

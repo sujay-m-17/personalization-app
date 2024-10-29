@@ -1,0 +1,25 @@
+api_version = "2024-10"
+
+[[extensions]]
+name = "t:name"
+handle = "assignment-product-discount"
+type = "function"
+
+description = "t:description"
+
+  [[extensions.targeting]]
+  target = "purchase.product-discount.run"
+  input_query = "src/run.graphql"
+  export = "run"
+
+  [extensions.build]
+  command = ""
+  path = "dist/function.wasm"
+
+  [extensions.input.variables]
+  namespace = "quantity-discounter"
+  key = "quantity-discount"
+
+  [extensions.ui.paths]
+  create = "/"
+  details = "/"
